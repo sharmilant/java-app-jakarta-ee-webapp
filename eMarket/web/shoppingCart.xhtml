@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="monstyle.css" rel="stylesheet" type="text/css" />
+        <title>eMarket - HomePage</title>
+    </h:head>
+    <h:body>
+    <f:view>
+        <h:form>
+        <nav>
+            
+                <h:commandLink action="fromshoppingcartTohome" class="menu-items" >
+                    <h:outputText value="Home"  />
+                </h:commandLink>
+                <h:commandLink action="fromCartToCatalog" class="menu-items" >
+                    <h:outputText value="Catalog"  />
+                </h:commandLink>
+            
+        </nav>
+
+        <div class="cart-item">
+            
+                    <h:graphicImage name="images/product1.jpg" alt="Produit 1" class="cart-item-image"/>
+                    <div class="cart-item-details">
+                        <h2>Produit 1</h2>
+                        <p>Description courte du produit 1.</p>
+                        <p class="price">Prix: 29.99€</p>
+                        
+                            
+                        
+                        <h:outputLabel value="Quantité: " />
+                        <h:inputText value="#{cartBean.product1Quantity}" size="2" class="quantity"/>
+                        <h:commandButton value="❌ Retirer" action="#{cartBean.removeProduct1}" class="remove-btn"/>
+                    </div>
+            
+        </div>
+       </h:form>
+    </f:view>
+    </h:body>
+</html>

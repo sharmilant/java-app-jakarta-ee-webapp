@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="monstyle.css" rel="stylesheet" type="text/css" />
+        <title>eMarket - HomePage</title>
+    </h:head>
+    <h:body>
+    <f:view>
+        <nav>
+            <h:form>
+                <h:commandLink action="fromcatalogueTohome" class="menu-items" >
+                    <h:outputText value="Home"  />
+                </h:commandLink>
+                <h:commandLink action="fromcatalogueToCart" class="menu-items" >
+                    <h:outputText value="Cart"  />
+                </h:commandLink>
+            </h:form>
+        </nav>
+
+            <!-- Catalogue de produits -->
+    <div class="catalogue">
+        <div class="product">
+            <img src="images/product1.jpg" alt="Produit 1" class="product-image"/>
+            <h:outputText value="Produit 1" styleClass="product-title"/>
+            <h:outputText value="Description courte du produit 1." styleClass="product-description"/>
+            <h:outputText value="Prix: 29.99€" styleClass="product-price"/>
+            <h:commandButton value="Ajouter au panier" styleClass="add-to-cart"/>
+        </div>
+        
+        <h:form>
+        <div class="product">
+            <img src="images/product2.jpg" alt="Produit 2" class="product-image"/>
+            <h:outputText value="Produit 2" styleClass="product-title"/>
+            <h:outputText value="Description courte du produit 2." styleClass="product-description"/>
+            <h:outputText value="Prix: 49.99€" styleClass="product-price"/>
+            <h:commandButton value="Ajouter au panier" styleClass="add-to-cart"/>
+        </div>
+        </h:form>
+    </div>
+
+    </f:view>
+    </h:body>
+</html>
