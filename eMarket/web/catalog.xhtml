@@ -9,38 +9,36 @@
     </h:head>
     <h:body>
     <f:view>
+        <h:form>
         <nav>
-            <h:form>
+            
                 <h:commandLink action="fromcatalogueTohome" class="menu-items" >
                     <h:outputText value="Home"  />
                 </h:commandLink>
                 <h:commandLink action="fromcatalogueToCart" class="menu-items" >
                     <h:outputText value="Cart"  />
                 </h:commandLink>
-            </h:form>
+            
         </nav>
 
             <!-- Catalogue de produits -->
-    <div class="catalogue">
-        <div class="product">
-            <img src="images/product1.jpg" alt="Produit 1" class="product-image"/>
-            <h:outputText value="Produit 1" styleClass="product-title"/>
-            <h:outputText value="Description courte du produit 1." styleClass="product-description"/>
-            <h:outputText value="Prix: 29.99€" styleClass="product-price"/>
-            <h:commandButton value="Ajouter au panier" styleClass="add-to-cart"/>
-        </div>
-        
-        <h:form>
-        <div class="product">
-            <img src="images/product2.jpg" alt="Produit 2" class="product-image"/>
-            <h:outputText value="Produit 2" styleClass="product-title"/>
-            <h:outputText value="Description courte du produit 2." styleClass="product-description"/>
-            <h:outputText value="Prix: 49.99€" styleClass="product-price"/>
-            <h:commandButton value="Ajouter au panier" styleClass="add-to-cart"/>
-        </div>
-        </h:form>
-    </div>
+        <div class="catalogue">
+            <h:dataTable class="product" value="#{catalogManager.listProducts}" var="item">
+             
+                <h:column >
+                    <h:outputText value="#{item.name}" styleClass="product-title" />
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{item.id}" styleClass="product-id" />
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{item.price}" styleClass="product-price" />
+                </h:column>                
+            </h:dataTable>
 
+        </div>
+
+        </h:form>
     </f:view>
     </h:body>
 </html>

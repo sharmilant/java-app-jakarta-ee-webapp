@@ -7,20 +7,53 @@ package logic;
 import model.Product;
 import java.util.ArrayList;
 import java.io.Serializable;
+import jakarta.inject.Named;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.annotation.PostConstruct;
+
 
 /**
  *
  * @author Sharmilan
  */
-public class CatalogManager {
+
+@Named
+@ApplicationScoped
+public class CatalogManager implements Serializable{
     private ArrayList<Product> listProducts;
     
     public CatalogManager(){
-        
+        this.listProducts = new ArrayList<Product> ();
     };
     
     public void setListProducts(ArrayList<Product> listProducts_){
-        
+        this.listProducts = listProducts_;
     }
     
+    public ArrayList<Product> getListProducts(){
+        return listProducts;
+    }
+    
+    public void addToCatalog(Product prod){
+        this.listProducts.add(prod);
+    }
+    @PostConstruct
+    public void initCatalog(){
+        Product prod1 = new Product();
+        prod1.setId(1);
+        prod1.setName("Phone");
+        prod1.setPrice(10);
+        
+        
+        Product prod2 = new Product();
+        prod2.setId(2);
+        prod2.setName("Brakes");
+        prod1.setPrice(100);
+        
+        addToCatalog(prod1);
+        addToCatalog(prod2);
+        
+        
+        
+    }
 }
