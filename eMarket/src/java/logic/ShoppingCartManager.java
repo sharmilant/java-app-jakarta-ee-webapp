@@ -22,15 +22,17 @@ public class ShoppingCartManager implements Serializable {
     
     private ArrayList<ShoppingCartItem> listCartItems;
     private Product prodToAdd;
-    private ShoppingCartItem itemToReduce;
+    private ShoppingCartItem itemToUpdate;
 
-    public ShoppingCartItem getItemToReduce() {
-        return itemToReduce;
+    public ShoppingCartItem getItemToUpdate() {
+        return itemToUpdate;
     }
 
-    public void setItemToReduce(ShoppingCartItem itemToReduce) {
-        this.itemToReduce = itemToReduce;
+    public void setItemToUpdate(ShoppingCartItem itemToUpdate) {
+        this.itemToUpdate = itemToUpdate;
     }
+
+    
 
    
 
@@ -77,8 +79,9 @@ public class ShoppingCartManager implements Serializable {
         System.out.println("Produit sélectionné : " + prodToAdd.getName());
         ShoppingCartItem item = new ShoppingCartItem();
         item.setId(listCartItems.size()+1);
-        item.setQuantity(1);
         item.setProduct(prodToAdd);
+        item.setQuantity(1);
+        
         listCartItems.add(item);
         
         
@@ -89,29 +92,69 @@ public class ShoppingCartManager implements Serializable {
         
     }
     
-    public void removeFromCart(){
-        if (itemToReduce == null){
+    public void reduceQuantityFromCart(){
+        if (itemToUpdate == null){
             System.out.println("Erreur : Aucun produit sélectionné pour retirer !");
+            
+        } 
+        else{
+            for (int i=0; i<listCartItems.size(); i++){
+                ShoppingCartItem itemLoc = listCartItems.get(i);
+                if (itemLoc.getId() == itemToUpdate.getId()){
+                    System.out.println("Produit sélectionné : " + itemLoc.getProduct().getName());
+                    if (itemLoc.getQuantity()>1){
+                        itemLoc.setQuantity(itemLoc.getQuantity() - 1);
+                        System.out.println("Mis à jour de la quantité du produit : " + itemLoc.getQuantity());
+                    }
+                    else{
+                        listCartItems.remove(i);
+                        System.out.println("Le produit a été retiré");
+                    } 
+                    return ;
+                }   
+            }
+            
+        }
+        
+    }
+    
+    public void addQuantityFromCart(){
+        if (itemToUpdate == null){
+            System.out.println("Erreur : Aucun produit sélectionné pour retirer !");
+            
         } 
         else{
             
-        for (int i=0; i<listCartItems.size(); i++){
-            ShoppingCartItem itemLoc = listCartItems.get(i);
-            if (itemLoc.getId() == itemToReduce.getId()){
-                System.out.println("Produit sélectionné : " + itemLoc.getProduct().getName());
-                if (itemLoc.getQuantity()>1){
-                    itemLoc.setQuantity(itemLoc.getQuantity() - 1);
+            for (int i=0; i<listCartItems.size(); i++){
+                ShoppingCartItem itemLoc = listCartItems.get(i);
+                if (itemLoc.getId() == itemToUpdate.getId()){
+                    System.out.println("Produit sélectionné : " + itemLoc.getProduct().getName());
+                    itemLoc.setQuantity(itemLoc.getQuantity() + 1);
                     System.out.println("Mis à jour de la quantité du produit : " + itemLoc.getQuantity());
-                }
-                else{
-                    listCartItems.remove(i);
-                    System.out.println("Le produit a été retiré");
-                } 
-                return ;
+                    return ;
+                }   
             }   
         }
+        
+    }
+    
+    
+    public void removeFromCart(){
+        if (itemToUpdate == null){
+            System.out.println("Erreur : Aucun produit sélectionné pour retirer !");
             
-        }
+        } 
+        else{
+            for (int i=0; i<listCartItems.size(); i++){
+                ShoppingCartItem itemLoc = listCartItems.get(i);
+                if (itemLoc.getId() == itemToUpdate.getId()){
+                    System.out.println("Produit sélectionné : " + itemLoc.getProduct().getName());
+                    listCartItems.remove(i);
+                    System.out.println("Le produit a été retiré");
+                    return ;
+                }   
+            }
+        }    
     }
     
     @PostConstruct

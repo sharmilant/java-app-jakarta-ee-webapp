@@ -14,6 +14,15 @@ public class ShoppingCartItem implements Serializable {
     private int id;
     private int quantity;
     private Product product;
+    private double totalPrice;
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     
     public ShoppingCartItem() {
@@ -33,6 +42,11 @@ public class ShoppingCartItem implements Serializable {
     }
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        if (product!=null){
+            setTotalPrice(quantity*product.getPrice());
+            System.out.println("Updated the total price of the product :" + product.getName());
+        }
+        
     }
     public void setProduct(Product product) {
         this.product = product;

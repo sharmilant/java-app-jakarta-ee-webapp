@@ -28,18 +28,39 @@
                     <h:outputText value="#{item.product.name}" styleClass="cart-item-details" />
                 </h:column>
                 <h:column>
-                    <h:outputLabel value="Quantité: " />
-                    <h:outputText value="#{item.quantity}" styleClass="product-quantity" />
+                        <h:commandButton value="➖" action="#{shoppingCartManager.reduceQuantityFromCart()}">
+                            <f:setPropertyActionListener value="#{item}" target="#{shoppingCartManager.itemToUpdate}" />
+                        </h:commandButton>
                 </h:column>
                 <h:column>
-                    <h:outputText value="#{item.product.price}" styleClass="product-price" />
+                    <h:outputLabel value="Quantité: " for="value-cart-item"/>
+                    <h:outputText id="value-cart-item" value="#{item.quantity}" styleClass="product-quantity" />
+                </h:column>
+                
+                <h:column>
+                        <h:commandButton value="➕" action="#{shoppingCartManager.addQuantityFromCart()}">
+                            <f:setPropertyActionListener value="#{item}" target="#{shoppingCartManager.itemToUpdate}" />
+                        </h:commandButton>
+                </h:column>
+                
+                <h:column>
+                    <h:outputLabel value="Prix " for="value-cart-price"/>
+                    <h:outputText id="value-cart-price" value="#{item.product.price}" styleClass="product-price" />
+                </h:column>
+                
+                <h:column>
+                    <h:outputLabel value="Prix total " for="value-cart-total-price"/>
+                    <h:outputText id="value-cart-total-price" value="#{item.totalPrice}" styleClass="product-price" />
                 </h:column>  
+                
                 <h:column>
                         <h:commandButton value="❌" action="#{shoppingCartManager.removeFromCart()}">
-                            <f:setPropertyActionListener value="#{item}" target="#{shoppingCartManager.itemToReduce}" />
+                            <f:setPropertyActionListener value="#{item}" target="#{shoppingCartManager.itemToUpdate}" />
                         </h:commandButton>
                     
                 </h:column>
+                
+                
             </h:dataTable>
             </h:form>
             
