@@ -21,18 +21,20 @@
         </nav>
 
         <div class="cart-item">
+            <h:dataTable class="product" value="#{shoppingCartManager.listCartItems}" var="item">
+             
+                <h:column >
+                    <h:outputText value="#{item.product.name}" styleClass="cart-item-details" />
+                </h:column>
+                <h:column>
+                    <h:outputLabel value="Quantité: " />
+                    <h:outputText value="#{item.quantity}" styleClass="product-quantity" />
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{item.product.price}" styleClass="product-price" />
+                </h:column>                
+            </h:dataTable>
             
-                    <h:graphicImage name="images/product1.jpg" alt="Produit 1" class="cart-item-image"/>
-                    <div class="cart-item-details">
-                        <h2>Produit 1</h2>
-                        <p>Description courte du produit 1.</p>
-                        <p class="price">Prix: 29.99€</p>
-                        
-                            
-                        
-                        <h:outputLabel value="Quantité: " />
-                        <h:commandButton value="❌ Retirer" action="#{cartBean.removeProduct1}" class="remove-btn"/>
-                    </div>
             
         </div>
        </h:form>
