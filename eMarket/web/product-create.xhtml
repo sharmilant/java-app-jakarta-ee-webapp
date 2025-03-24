@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="monstyle.css" rel="stylesheet" type="text/css" />
+        
+        <title>eMarket - Create a product</title>
+    </h:head>
+    <h:body>
+    <f:view>
+        <h:form>
+        <nav>
+                <h:commandLink action="fromProductCreateToHome" class="menu-items" >
+                    <h:outputText value="Home"  />
+                </h:commandLink>
+        </nav>
+        </h:form>
+            <h:form id="product-create">
+                <h:outputLabel id="id-input-product-create-label" class="product-create-label" for="fieldID" value="Product ID"/>
+                <h:inputText id="fieldID" class="product-create-input" value = "" />
+                <h:outputLabel id="name-input-product-create-label" class="product-create-label" for="fieldName" value="Product Name"/>
+                <h:inputText id="fieldName" class="product-create-input" value = "" />
+                <h:outputLabel id="price-input-product-create-label" styleClass="product-create-label" for="fieldPrice" value="Product Price"/>
+                <h:inputText id="fieldPrice" class="product-create-input" value = "" />
+                <h:commandButton value="Valider" action="..."/>
+            </h:form>
+
+
+       
+    </f:view>
+    </h:body>
+</html>
