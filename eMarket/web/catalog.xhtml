@@ -23,6 +23,7 @@
 
             <!-- Catalogue de produits -->
         <div class="catalogue">
+            <h:form>
             <h:dataTable class="product" value="#{catalogManager.listProducts}" var="item">
              
                 <h:column >
@@ -34,12 +35,15 @@
                 <h:column>
                     <h:outputText value="#{item.price}" styleClass="product-price" />
                 </h:column>
+                
                 <h:column>
-                    <h:form>
-                        <h:commandButton class="add-to-cart-button" value="🛒" action="#{shoppingCartManager.addToCart()}"/>
-                    </h:form>
+                        <h:commandButton value="🛒" action="#{shoppingCartManager.addToCart()}">
+                            <f:setPropertyActionListener value="#{item}" target="#{shoppingCartManager.prodToAdd}" />
+                        </h:commandButton>
+                    
                 </h:column>
             </h:dataTable>
+            </h:form>
 
         </div>
 

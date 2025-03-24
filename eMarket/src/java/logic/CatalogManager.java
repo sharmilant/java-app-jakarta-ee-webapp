@@ -91,7 +91,7 @@ public class CatalogManager implements Serializable{
         Product prod2 = new Product();
         prod2.setId(2);
         prod2.setName("Brakes");
-        prod1.setPrice(100);
+        prod2.setPrice(100);
         
         addToCatalog(prod1);
         addToCatalog(prod2);

@@ -87,5 +87,12 @@
                         <to-view-id>/catalog.xhtml</to-view-id>
                 </navigation-case>
             </navigation-rule>
+            <navigation-rule>
+                <from-view-id>/catalog.xhtml</from-view-id>
+                <navigation-case>
+                    <from-outcome>fromCatalogToShoppingCart</from-outcome>
+                        <to-view-id>/shoppingCart.xhtml</to-view-id>
+                </navigation-case>
+            </navigation-rule>
 </faces-config>
 

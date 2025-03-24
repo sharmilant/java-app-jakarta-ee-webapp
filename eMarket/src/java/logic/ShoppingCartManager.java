@@ -21,6 +21,8 @@ import jakarta.annotation.PostConstruct;
 public class ShoppingCartManager implements Serializable {
     
     private ArrayList<ShoppingCartItem> listCartItems;
+    private Product prodToAdd;
+
 
     public ShoppingCartManager() {
         this.listCartItems = new ArrayList<ShoppingCartItem>();
@@ -34,10 +36,40 @@ public class ShoppingCartManager implements Serializable {
         this.listCartItems = listCartItems;
     }
     
-    public String addToCart(ShoppingCartItem item){
-        this.listCartItems.add(item);
-        return "";
+    
+    public Product getProdToAdd() {
+        return prodToAdd;
     }
+
+    public void setProdToAdd(Product prodToAdd) {
+        this.prodToAdd = prodToAdd;
+    }
+
+    public void testFunction(){
+        System.out.println("Button clicked with product : " + prodToAdd.getName());
+    }
+    
+    public String addToCart(){
+        if (prodToAdd == null){
+            System.out.println("Erreur : Aucun produit sélectionné !");
+        }
+        
+        System.out.println("Produit sélectionné : " + prodToAdd.getName());
+        ShoppingCartItem item = new ShoppingCartItem();
+        
+        item.setId(listCartItems.size()+1);
+        item.setQuantity(1);
+        item.setProduct(prodToAdd);
+        listCartItems.add(item);
+        
+        
+        
+        System.out.println("Produit ajouté : " + prodToAdd.getName());
+        setProdToAdd(null);
+        return "fromCatalogToShoppingCart";
+        
+    }
+    
     
     @PostConstruct
     private void initCart(){
@@ -53,7 +85,7 @@ public class ShoppingCartManager implements Serializable {
         item1.setProduct(prod1);
         item1.setQuantity(20);
         
-        String temp = addToCart(item1);
+        //this.listCartItems.add(item1);
     }
     
     
