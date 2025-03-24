@@ -34,8 +34,9 @@ public class ShoppingCartManager implements Serializable {
         this.listCartItems = listCartItems;
     }
     
-    public void addToCart(ShoppingCartItem item){
+    public String addToCart(ShoppingCartItem item){
         this.listCartItems.add(item);
+        return "";
     }
     
     @PostConstruct
@@ -52,7 +53,7 @@ public class ShoppingCartManager implements Serializable {
         item1.setProduct(prod1);
         item1.setQuantity(20);
         
-        addToCart(item1);
+        String temp = addToCart(item1);
     }
     
     

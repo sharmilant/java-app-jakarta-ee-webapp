@@ -33,7 +33,12 @@
                 </h:column>
                 <h:column>
                     <h:outputText value="#{item.price}" styleClass="product-price" />
-                </h:column>                
+                </h:column>
+                <h:column>
+                    <h:form>
+                        <h:commandButton class="add-to-cart-button" value="🛒" action="#{shoppingCartManager.addToCart()}"/>
+                    </h:form>
+                </h:column>
             </h:dataTable>
 
         </div>
