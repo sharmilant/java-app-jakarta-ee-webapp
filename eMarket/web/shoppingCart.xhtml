@@ -21,6 +21,7 @@
         </nav>
 
         <div class="cart-item">
+            <h:form>
             <h:dataTable class="product" value="#{shoppingCartManager.listCartItems}" var="item">
              
                 <h:column >
@@ -32,8 +33,15 @@
                 </h:column>
                 <h:column>
                     <h:outputText value="#{item.product.price}" styleClass="product-price" />
-                </h:column>                
+                </h:column>  
+                <h:column>
+                        <h:commandButton value="❌" action="#{shoppingCartManager.removeFromCart()}">
+                            <f:setPropertyActionListener value="#{item}" target="#{shoppingCartManager.itemToReduce}" />
+                        </h:commandButton>
+                    
+                </h:column>
             </h:dataTable>
+            </h:form>
             
             
         </div>

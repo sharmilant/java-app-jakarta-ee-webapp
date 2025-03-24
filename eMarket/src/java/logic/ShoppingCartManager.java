@@ -22,6 +22,17 @@ public class ShoppingCartManager implements Serializable {
     
     private ArrayList<ShoppingCartItem> listCartItems;
     private Product prodToAdd;
+    private ShoppingCartItem itemToReduce;
+
+    public ShoppingCartItem getItemToReduce() {
+        return itemToReduce;
+    }
+
+    public void setItemToReduce(ShoppingCartItem itemToReduce) {
+        this.itemToReduce = itemToReduce;
+    }
+
+   
 
 
     public ShoppingCartManager() {
@@ -45,18 +56,26 @@ public class ShoppingCartManager implements Serializable {
         this.prodToAdd = prodToAdd;
     }
 
-    public void testFunction(){
-        System.out.println("Button clicked with product : " + prodToAdd.getName());
-    }
+
     
     public String addToCart(){
         if (prodToAdd == null){
             System.out.println("Erreur : Aucun produit sélectionné !");
+            
         }
         
+        for (int i=0; i<listCartItems.size(); i++){
+            ShoppingCartItem itemLoc = listCartItems.get(i);
+            if (itemLoc.getProduct().getId() == prodToAdd.getId()){
+                itemLoc.setQuantity(itemLoc.getQuantity() + 1);
+                System.out.println("Produit sélectionné : " + prodToAdd.getName());
+                System.out.println("Mis à jour de la quantité du produit : " + itemLoc.getQuantity());
+                return "fromCatalogToShoppingCart";
+            }   
+        }
+
         System.out.println("Produit sélectionné : " + prodToAdd.getName());
         ShoppingCartItem item = new ShoppingCartItem();
-        
         item.setId(listCartItems.size()+1);
         item.setQuantity(1);
         item.setProduct(prodToAdd);
@@ -70,6 +89,30 @@ public class ShoppingCartManager implements Serializable {
         
     }
     
+    public void removeFromCart(){
+        if (itemToReduce == null){
+            System.out.println("Erreur : Aucun produit sélectionné pour retirer !");
+        } 
+        else{
+            
+        for (int i=0; i<listCartItems.size(); i++){
+            ShoppingCartItem itemLoc = listCartItems.get(i);
+            if (itemLoc.getId() == itemToReduce.getId()){
+                System.out.println("Produit sélectionné : " + itemLoc.getProduct().getName());
+                if (itemLoc.getQuantity()>1){
+                    itemLoc.setQuantity(itemLoc.getQuantity() - 1);
+                    System.out.println("Mis à jour de la quantité du produit : " + itemLoc.getQuantity());
+                }
+                else{
+                    listCartItems.remove(i);
+                    System.out.println("Le produit a été retiré");
+                } 
+                return ;
+            }   
+        }
+            
+        }
+    }
     
     @PostConstruct
     private void initCart(){
