@@ -21,6 +21,9 @@ import jakarta.annotation.PostConstruct;
 @ApplicationScoped
 public class CatalogManager implements Serializable{
     private ArrayList<Product> listProducts;
+    private int prodIdForm;
+    private String prodNameForm;
+    private double prodPriceForm;
     
     public CatalogManager(){
         this.listProducts = new ArrayList<Product> ();
@@ -34,9 +37,49 @@ public class CatalogManager implements Serializable{
         return listProducts;
     }
     
+    public int getProdIdForm(){
+        return prodIdForm;
+    }
+    
+    public void setProdIdForm(int _prodIdForm){
+        this.prodIdForm = _prodIdForm;
+    }
+    
+    public String getProdNameForm(){
+        return prodNameForm;
+    }
+    
+    public void setProdNameForm(String _prodNameForm){
+        this.prodNameForm = _prodNameForm;
+    }
+    
+    public double getProdPriceForm(){
+        return prodPriceForm;
+    }
+    
+    public void setProdPriceForm(double _price){
+        this.prodPriceForm = _price;
+    }
+    
     public void addToCatalog(Product prod){
         this.listProducts.add(prod);
     }
+    
+    public String createProduct(){
+        Product formProd = new Product();
+        formProd.setId(getProdIdForm());
+        formProd.setName(getProdNameForm());
+        formProd.setPrice(getProdPriceForm());
+        
+        addToCatalog(formProd);
+        
+        setProdPriceForm(0);
+        setProdNameForm("");
+        setProdIdForm(0);
+        
+        return "fromProductCreateToCatalog";
+    }
+    
     @PostConstruct
     public void initCatalog(){
         Product prod1 = new Product();

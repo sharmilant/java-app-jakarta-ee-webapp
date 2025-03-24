@@ -18,12 +18,12 @@
         </h:form>
             <h:form id="product-create">
                 <h:outputLabel id="id-input-product-create-label" class="product-create-label" for="fieldID" value="Product ID"/>
-                <h:inputText id="fieldID" class="product-create-input" value = "" />
+                <h:inputText id="fieldID" class="product-create-input" value = "#{catalogManager.prodIdForm}" />
                 <h:outputLabel id="name-input-product-create-label" class="product-create-label" for="fieldName" value="Product Name"/>
-                <h:inputText id="fieldName" class="product-create-input" value = "" />
+                <h:inputText id="fieldName" class="product-create-input" value = "#{catalogManager.prodNameForm}" />
                 <h:outputLabel id="price-input-product-create-label" styleClass="product-create-label" for="fieldPrice" value="Product Price"/>
-                <h:inputText id="fieldPrice" class="product-create-input" value = "" />
-                <h:commandButton value="Valider" action="..."/>
+                <h:inputText id="fieldPrice" class="product-create-input" value = "#{catalogManager.prodPriceForm}" />
+                <h:commandButton value="Valider" action="#{catalogManager.createProduct()}"/>
             </h:form>
 
 
