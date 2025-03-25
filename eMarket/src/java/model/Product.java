@@ -5,14 +5,25 @@
 package model;
 
 import java.io.Serializable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
 
 /**
  *
  * @author Sharmilan
  */
+@Entity
+@Table(name = "PRODUCT")
+
 public class Product implements Serializable {
+    @Id
+    @Column( name="ID")
     private int id;
+    @Column( name="NAME")
     private String name;
+    @Column( name="SELLING_PRICE")
     private double price;
     
     // Constructeur

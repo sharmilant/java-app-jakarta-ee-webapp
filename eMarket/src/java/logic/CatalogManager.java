@@ -10,6 +10,8 @@ import java.io.Serializable;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
+import facade.ProductFacade;
 
 
 /**
@@ -24,6 +26,9 @@ public class CatalogManager implements Serializable{
     private int prodIdForm;
     private String prodNameForm;
     private double prodPriceForm;
+    
+    @EJB
+    private ProductFacade productFacade;
     
     public CatalogManager(){
         this.listProducts = new ArrayList<Product> ();
@@ -82,7 +87,7 @@ public class CatalogManager implements Serializable{
     
     @PostConstruct
     public void initCatalog(){
-        Product prod1 = new Product();
+        /*Product prod1 = new Product();
         prod1.setId(1);
         prod1.setName("Phone");
         prod1.setPrice(10);
@@ -94,7 +99,9 @@ public class CatalogManager implements Serializable{
         prod2.setPrice(100);
         
         addToCatalog(prod1);
-        addToCatalog(prod2);
+        addToCatalog(prod2);*/
+        
+        listProducts.addAll(productFacade.findAll());
         
         
         
