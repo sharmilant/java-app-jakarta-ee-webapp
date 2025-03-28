@@ -24,18 +24,11 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_4_0.xsd">
 
-            <navigation-rule>
-                <from-view-id>/index.xhtml</from-view-id>
+            <navigation-rule> 
+               <from-view-id>/index.xhtml</from-view-id>
                 <navigation-case>
                     <from-outcome>toshoppingcart</from-outcome>
                     <to-view-id>/shoppingCart.xhtml</to-view-id>
-                </navigation-case>
-            </navigation-rule>
-            <navigation-rule>
-                <from-view-id>/shoppingCart.xhtml</from-view-id>
-                <navigation-case>
-                    <from-outcome>fromshoppingcartTohome</from-outcome>
-                        <to-view-id>/index.xhtml</to-view-id>
                 </navigation-case>
             </navigation-rule>
             <navigation-rule>
@@ -45,6 +38,21 @@
                         <to-view-id>/catalog.xhtml</to-view-id>
                 </navigation-case>
             </navigation-rule>
+            *<navigation-rule>
+                <from-view-id>/index.xhtml</from-view-id>
+                <navigation-case>
+                    <from-outcome>fromHomeToCreateProduct</from-outcome>
+                        <to-view-id>/product-create.xhtml</to-view-id>
+                </navigation-case>
+            </navigation-rule>
+            <navigation-rule>
+                <from-view-id>/index.xhtml</from-view-id>
+                <navigation-case>
+                    <from-outcome>fromHomeToRemoveProduct</from-outcome>
+                        <to-view-id>/product-remove.xhtml</to-view-id>
+                </navigation-case>
+            </navigation-rule>
+            
             <navigation-rule>
                 <from-view-id>/catalog.xhtml</from-view-id>
                 <navigation-case>
@@ -55,8 +63,37 @@
             <navigation-rule>
                 <from-view-id>/catalog.xhtml</from-view-id>
                 <navigation-case>
+                    <from-outcome>fromCatalogToProductCreate</from-outcome>
+                        <to-view-id>/product-create.xhtml</to-view-id>
+                </navigation-case>
+            </navigation-rule>
+            <navigation-rule>
+                <from-view-id>/catalog.xhtml</from-view-id>
+                <navigation-case>
+                    <from-outcome>fromCatalogToProductRemove</from-outcome>
+                        <to-view-id>/product-remove.xhtml</to-view-id>
+                </navigation-case>
+            </navigation-rule>
+            <navigation-rule>
+                <from-view-id>/catalog.xhtml</from-view-id>
+                <navigation-case>
                     <from-outcome>fromcatalogueToCart</from-outcome>
                         <to-view-id>/shoppingCart.xhtml</to-view-id>
+                </navigation-case>
+            </navigation-rule>
+            <navigation-rule>
+                <from-view-id>/catalog.xhtml</from-view-id>
+                <navigation-case>
+                    <from-outcome>fromCatalogToShoppingCart</from-outcome>
+                        <to-view-id>/shoppingCart.xhtml</to-view-id>
+                </navigation-case>
+            </navigation-rule>
+            
+            <navigation-rule>
+                <from-view-id>/shoppingCart.xhtml</from-view-id>
+                <navigation-case>
+                    <from-outcome>fromshoppingcartTohome</from-outcome>
+                        <to-view-id>/index.xhtml</to-view-id>
                 </navigation-case>
             </navigation-rule>
             <navigation-rule>
@@ -66,13 +103,7 @@
                         <to-view-id>/catalog.xhtml</to-view-id>
                 </navigation-case>
             </navigation-rule>
-            <navigation-rule>
-                <from-view-id>/index.xhtml</from-view-id>
-                <navigation-case>
-                    <from-outcome>fromHomeToCreateProduct</from-outcome>
-                        <to-view-id>/product-create.xhtml</to-view-id>
-                </navigation-case>
-            </navigation-rule>
+
             <navigation-rule>
                 <from-view-id>/product-create.xhtml</from-view-id>
                 <navigation-case>
@@ -88,11 +119,36 @@
                 </navigation-case>
             </navigation-rule>
             <navigation-rule>
-                <from-view-id>/catalog.xhtml</from-view-id>
+                <from-view-id>/product-create.xhtml</from-view-id>
                 <navigation-case>
-                    <from-outcome>fromCatalogToShoppingCart</from-outcome>
-                        <to-view-id>/shoppingCart.xhtml</to-view-id>
+                    <from-outcome>fromProductCreateToProductRemove</from-outcome>
+                        <to-view-id>/product-remove.xhtml</to-view-id>
                 </navigation-case>
             </navigation-rule>
+
+            
+            <navigation-rule>
+                <from-view-id>/product-remove.xhtml</from-view-id>
+                <navigation-case>
+                    <from-outcome>fromProductRemoveToCatalog</from-outcome>
+                        <to-view-id>/catalog.xhtml</to-view-id>
+                </navigation-case>
+            </navigation-rule>
+            <navigation-rule>
+                <from-view-id>/product-remove.xhtml</from-view-id>
+                <navigation-case>
+                    <from-outcome>fromProductRemoveToHome</from-outcome>
+                        <to-view-id>/index.xhtml</to-view-id>
+                </navigation-case>
+            </navigation-rule>
+            <navigation-rule>
+                <from-view-id>/product-remove.xhtml</from-view-id>
+                <navigation-case>
+                    <from-outcome>fromProductRemoveToProductCreate</from-outcome>
+                    <to-view-id>/product-create.xhtml</to-view-id>
+                </navigation-case>
+            </navigation-rule>
+            
+
 </faces-config>
 

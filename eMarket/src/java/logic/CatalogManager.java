@@ -81,7 +81,7 @@ public class CatalogManager implements Serializable{
     
     public String createProduct(){
         Product formProd = new Product();
-        formProd.setId(listProducts.size()+1);
+        formProd.setId(listProducts.get(listProducts.size()-1).getId()+1);
         formProd.setName(getProdNameForm());
         formProd.setPrice(getProdPriceForm());
         
@@ -95,15 +95,31 @@ public class CatalogManager implements Serializable{
         return "fromProductCreateToCatalog";
     }
     
+    
+    
     public String removeProduct(){
+
+        try{
+        System.out.println(productFacade.findAll());
+        productFacade.remove(prodIdFormRemove);
         for (int i=0; i<listProducts.size(); i++){
             if (listProducts.get(i).getId()==prodIdFormRemove){
                 listProducts.remove(i);
-                return "fromProductCreateToCatalog";
+                break;
             }
         }
-        return "fromProductCreateToCatalog";
+        }
+        catch (Exception e){
+        System.err.println("Error removing: " + e);
+        }
+        
+        System.out.println("Removed successfully product with id : "+ prodIdFormRemove);
+        setProdIdFormRemove(0);
+        System.out.println(productFacade.findAll());
+        return "fromProductRemoveToCatalog";
+
     }
+    
     
     @PostConstruct
     public void initCatalog(){

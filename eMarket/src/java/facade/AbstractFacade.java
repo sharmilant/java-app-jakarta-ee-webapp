@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import java.util.List;
 
 
+
 public abstract class AbstractFacade<T> {
     private final Class<T> entityClass ;
     
@@ -30,5 +31,13 @@ public abstract class AbstractFacade<T> {
     public void create(T entity) {
         getEntityManager().persist(entity);
     }
+    
+    public void remove(Object id) {
+    
+        T order = find(id);
+        getEntityManager().remove(order);
+    
+   
+}
     
 }                       

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="monstyle.css" rel="stylesheet" type="text/css" />
+        
+        <title>eMarket - Create a product</title>
+    </h:head>
+    <h:body>
+    <f:view>
+        <h:form>
+        <nav>
+                <h:commandLink action="fromProductRemoveToHome" class="menu-items" >
+                    <h:outputText value="Home"  />
+                </h:commandLink>
+                <h:commandLink action="fromProductRemoveToCatalog" class="menu-items" >
+                    <h:outputText value="Catalog"  />
+                </h:commandLink>
+                <h:commandLink action="fromProductRemoveToProductCreate" class="menu-items" >
+                    <h:outputText value="🛠️ Create a product"  />
+                </h:commandLink>
+            
+        </nav>
+        </h:form>
+            <h:form id="product-create">
+                <h:outputLabel id="id-input-product-create-label" class="product-create-label" for="idProduct" value="Id"/>
+                <h:inputText id="idProduct" class="product-create-input" value = "#{catalogManager.prodIdFormRemove}" />
+                <h:commandButton value="Valider" action="#{catalogManager.removeProduct()}"/>
+            </h:form>
+
+
+       
+    </f:view>
+    </h:body>
+</html>
