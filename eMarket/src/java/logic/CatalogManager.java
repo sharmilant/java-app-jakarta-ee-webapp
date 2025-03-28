@@ -26,9 +26,18 @@ public class CatalogManager implements Serializable{
     private int prodIdForm;
     private String prodNameForm;
     private double prodPriceForm;
+    private int prodIdFormRemove;
     
     @EJB
     private ProductFacade productFacade;
+
+    public int getProdIdFormRemove() {
+        return prodIdFormRemove;
+    }
+
+    public void setProdIdFormRemove(int prodIdFormRemove) {
+        this.prodIdFormRemove = prodIdFormRemove;
+    }
     
     public CatalogManager(){
         this.listProducts = new ArrayList<Product> ();
@@ -72,16 +81,27 @@ public class CatalogManager implements Serializable{
     
     public String createProduct(){
         Product formProd = new Product();
-        formProd.setId(getProdIdForm());
+        formProd.setId(listProducts.size()+1);
         formProd.setName(getProdNameForm());
         formProd.setPrice(getProdPriceForm());
         
         addToCatalog(formProd);
+        productFacade.create(formProd);
         
         setProdPriceForm(0);
         setProdNameForm("");
         setProdIdForm(0);
         
+        return "fromProductCreateToCatalog";
+    }
+    
+    public String removeProduct(){
+        for (int i=0; i<listProducts.size(); i++){
+            if (listProducts.get(i).getId()==prodIdFormRemove){
+                listProducts.remove(i);
+                return "fromProductCreateToCatalog";
+            }
+        }
         return "fromProductCreateToCatalog";
     }
     
